@@ -24,6 +24,7 @@ class AppCommonUtilitiesExtension extends AbstractExtension
         return [
             //new TwigFunction('function_name', [AppCommonUtilitiesExtensionRuntime::class, 'doSomething']),
             new TwigFunction('app_parameter', [AppCommonUtilitiesExtensionRuntime::class, 'getParameter']),
+            new TwigFunction('app_execution_time', [AppCommonUtilitiesExtensionRuntime::class, 'getExecutionTime']),
         ];
     }
 }

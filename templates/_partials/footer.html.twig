@@ -1,0 +1,6 @@
+<div class="w-100 mx-auto footer">
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+        <span>Temps d'exécution de la page: {{ app_execution_time() }}</span>
+        <span>{{ app_parameter('app.name') ~ ': ' ~ app_parameter('app.version') }}</span>
+    </div>
+</div>
