@@ -39,8 +39,12 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-bs-toggle="dropdown" aria-expanded="false">Mon compte</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdown08">
-							<li><a class="dropdown-item" href="/">Connexion</a></li>
-							<li><a class="dropdown-item" href="/">Inscription</a></li>
+							{% if app.user %}
+								<li><a class="dropdown-item" href="/logout">Déconnexion</a></li>
+							{% else %}
+								<li><a class="dropdown-item" href="/login">Connexion</a></li>
+								<li><a class="dropdown-item" href="/register">Inscription</a></li>
+							{% endif %}
 						</ul>
 					</li>
 				</ul>
