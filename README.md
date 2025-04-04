@@ -1,32 +1,35 @@
-## Hi there 👋
-@todo create a small intro
+PROJET EN COURS DE CONVERSION
 
-# Requirements
-- A webserver (local or online) ou Symfony CLI (local)
-    - For the Symfony CLI, make sure this executable and PHP 8.3.x are available in the PATH variable
-- PHP 8.3.x
-- SQLite 3.x
-- Composer 2.x
-- For more details, see https://symfony.com/doc/current/setup.html
+Fonctions de Caranille :
 
-# Instructions
-- Make sure the webserver or Symfony CLI are working correctly, with PHP 8.2.x
-- For development, create and edit a blank file with the name .env.dev.local, and copy the variable "DATABASE_URL" with the DB credencials. This file is yours, and it will be ignored by git
-- At the command line, run:
-    - symfony composer install
-    - symfony local:check:requirements
-        - This validates the minimum requirements for running a symfony project
-    - symfony local:check:security
-        - This validates the security of the environment used for running the project
-    - symfony console doctrine:migrations:migrate
-        - If this command fails, check the DATABASE_URL value in the .env.dev.local file. If the variable does not exists, copy it from the .env to .env.local
-    - symfony console doctrine:fixtures:load
-        - This initializes the data used by the app
-    - symfony server:start
-        - This step is used only if the Symfony CLI is not available
-        - If there are more than one PHP version, create an empty file ".php-version" in the root of the project or any its parents, and write "8.2" before saving it
-        - To stop the local server, run "symfony server:stop"
-- To restart the database *** ONLY IN DEVELOPMENT ***, run "symfony console doctrine:fixtures:load" and type "yes"
+-Créer une histoire sous forme de chapitre avec introduction, conclusion
 
-# Demo users (username / password)
-@todo create a list of users
+-Créer une ou plusieurs classes dans le jeu (Guerrier, Mage etc.…)
+
+-Créer des lieux
+
+-Créer des monstres
+
+-Créer des objets/équipements pouvant être obtenu sur des monstres ou acheté en boutique
+
+-Créer des magasins
+
+Contenu Multi-joueurs :
+
+-Faire des échanges
+
+-Faire du PVP (L'autre joueur sera contrôlé par l'IA)
+
+-Possibilité de mettre un objet ou équipement en vente au prix choisit pour les autres joueurs
+
+-Chat
+
+-Discutions privée
+
+Pour les créateurs de jeu je propose même des outils pour créer vos propres événements à savoir :
+
+-Possibilité d'augmenter en % le taux d'XP, d'obtention d'objet, de gain de pièce d'or
+
+-Possibilité de donner de l'expérience à un ou tous les joueurs
+
+-Possibilité de donner de l'argent à un ou plusieurs joueurs
