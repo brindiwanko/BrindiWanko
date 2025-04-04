@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-100" lang="fr">
+<html class="h-100" data-bs-theme="light" lang="fr">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,8 +9,14 @@
 
 		<title>{% block title %}Welcome!{% endblock %}</title>
 
+		{% block stylesheets %}
+		{% endblock %}
+		{% block javascripts %}
+			{% block importmap %}{{ importmap('app') }}{% endblock %}
+		{% endblock %}
+
 		<!-- Bootstrap core CSS -->
-		<link href="/css/bootstrap.min.css" rel="stylesheet">
+		<!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> -->
 
 		<!-- Custom styles for this template -->
 		<link href="/css/navbar-top-fixed.css" rel="stylesheet">
@@ -52,10 +58,10 @@
 				</div>
 			</div>
 		</nav>
-
+		{%- include './_partials/dropdown-theme.html.twig' -%}
 		<main class="flex-shrink-0">
 			<div class="container-fluid">
-				<div class="bg-light p-5 rounded">
+				<div class="p-5 rounded">
 					{% block body %}{% endblock %}
 				</div>
 			</div>
@@ -68,5 +74,7 @@
 			</div>
 		</footer>
 		<script src="/js/bootstrap.bundle.min.js"></script>
+		{% block javascripts_endbody %}
+		{% endblock %}
 	</body>
 </html>
