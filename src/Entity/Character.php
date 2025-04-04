@@ -221,6 +221,10 @@ class Character
     #[ORM\Column]
     private ?int $enable = null;
 
+    #[ORM\ManyToOne(inversedBy: 'characters')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -1050,6 +1054,18 @@ class Character
     public function setEnable(int $enable): static
     {
         $this->enable = $enable;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
