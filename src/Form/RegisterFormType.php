@@ -4,16 +4,23 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Event\PostSubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class RegisterFormType extends AbstractType
 {
+    public function __construct(
+        private UserPasswordHasherInterface $userPasswordHasher,
+    )
+    {}
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -43,6 +50,7 @@ class RegisterFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->addEventListener(FormEvents::POST_SUBMIT, [$this, 'hashPassword'])
         ;
     }
 
@@ -51,5 +59,18 @@ class RegisterFormType extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class,
         ]);
+    }
+
+    public function hashPassword(PostSubmitEvent $event): void
+    {
+        /* @var User $user */
+        $user = $event->getData();
+
+        /** @var string $plainPassword */
+        $plainPassword = $event->getForm()->get('plainPassword')->getData();
+        $hashedPassword = $this->userPasswordHasher->hashPassword($user, $plainPassword);
+
+        // encode the plain password
+        $user->setPassword($hashedPassword);
     }
 }
