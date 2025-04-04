@@ -41,4 +41,7 @@ return [
     '@fortawesome/free-brands-svg-icons' => [
         'version' => '6.7.2',
     ],
+    '@popperjs/core' => [
+        'version' => '2.11.8',
+    ],
 ];

@@ -1,6 +1,3 @@
-import './bootstrap.js';
-import './scripts/color-modes.js';
-
 import './styles/bootstrap.min.css';
 import './styles/bootstrap-icons.min.css';
 import './vendor/@fortawesome/fontawesome-svg-core/styles.min.css';
@@ -10,6 +7,11 @@ import './fontawesome/css/regular.min.css';
 import './fontawesome/css/solid.min.css';
 import './styles/form-signin.css';
 import './styles/app.css';
+
+import './bootstrap.js';
+import './scripts/color-modes.js';
+
+import './vendor/@popperjs/core/core.index.js';
 
 import { library, dom } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
