@@ -5,7 +5,6 @@ import './fontawesome/css/fontawesome.min.css';
 import './fontawesome/css/brands.min.css';
 import './fontawesome/css/regular.min.css';
 import './fontawesome/css/solid.min.css';
-import './styles/form-signin.css';
 import './styles/app.css';
 
 import './bootstrap.js';
