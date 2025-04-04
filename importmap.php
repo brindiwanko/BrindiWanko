@@ -16,30 +16,13 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
-    'bootstrap' => [
-        'version' => '5.3.3',
+    '@hotwired/stimulus' => [
+        'version' => '3.2.2',
     ],
-    '@popperjs/core' => [
-        'version' => '2.11.8',
+    '@symfony/stimulus-bundle' => [
+        'path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js',
     ],
-    'bootstrap/dist/css/bootstrap.min.css' => [
-        'version' => '5.3.3',
-        'type' => 'css',
-    ],
-    '@fortawesome/fontawesome-svg-core' => [
-        'version' => '6.7.2',
-    ],
-    '@fortawesome/fontawesome-svg-core/styles.min.css' => [
-        'version' => '6.7.2',
-        'type' => 'css',
-    ],
-    '@fortawesome/free-solid-svg-icons' => [
-        'version' => '6.7.2',
-    ],
-    '@fortawesome/free-regular-svg-icons' => [
-        'version' => '6.7.2',
-    ],
-    '@fortawesome/free-brands-svg-icons' => [
-        'version' => '6.7.2',
+    '@hotwired/turbo' => [
+        'version' => '7.3.0',
     ],
 ];
