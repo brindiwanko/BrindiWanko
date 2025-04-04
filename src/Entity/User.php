@@ -3,14 +3,21 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[ORM\Table(name: '`car_accounts`')]
+#[ORM\Index(name: 'idx_car_accounts_pseudo', columns: ['pseudo'])]
+#[ORM\Index(name: 'idx_car_accounts_pseudo', columns: ['email'])]
+#[UniqueEntity(fields: 'pseudo', errorPath: 'pseudo')]
+#[UniqueEntity(fields: 'email', errorPath: 'email')]
+#[ORM\HasLifecycleCallbacks]
+
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -18,24 +25,69 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 50)]
+    private ?string $pseudo = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $password = null;
+
+    #[ORM\Column(length: 50)]
     private ?string $email = null;
 
-    /**
-     * @var list<string> The user roles
-     */
     #[ORM\Column]
     private array $roles = [];
 
-    /**
-     * @var string The hashed password
-     */
-    #[ORM\Column]
-    private ?string $password = null;
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $secret_question = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $secret_answer = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $account_access = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $account_status = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $account_reason = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $account_last_action = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $account_last_connection = null;
+
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $account_last_ip = null;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): static
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(?string $password): static
+    {
+        $this->password = $password;
+
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -50,61 +102,128 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUserIdentifier(): string
+    public function getSecretQuestion(): ?string
     {
-        return (string) $this->email;
+        return $this->secret_question;
     }
 
-    /**
-     * @see UserInterface
-     *
-     * @return list<string>
-     */
+    public function setSecretQuestion(?string $secret_question): static
+    {
+        $this->secret_question = $secret_question;
+
+        return $this;
+    }
+
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        if(empty($this->roles)) {
+            $this->roles = ['ROLE_USER'];
+        }
 
-        return array_unique($roles);
+        return $this->roles;
     }
 
-    /**
-     * @param list<string> $roles
-     */
-    public function setRoles(array $roles): static
+    public function setRoles(?array $roles): static
     {
+        if(empty($roles)) {
+            $roles = ['ROLE_USER'];
+        }
         $this->roles = $roles;
 
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-    public function getPassword(): ?string
+    public function eraseCredentials(): void
     {
-        return $this->password;
+        // TODO: Implement eraseCredentials() method.
     }
 
-    public function setPassword(string $password): static
+    public function getUserIdentifier(): string
     {
-        $this->password = $password;
+        return $this->getPseudo();
+    }
+
+    public function getSecretAnswer(): ?string
+    {
+        return $this->secret_answer;
+    }
+
+    public function setSecretAnswer(?string $secret_answer): static
+    {
+        $this->secret_answer = $secret_answer;
 
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials(): void
+    public function getAccountAccess(): ?int
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        return $this->account_access;
+    }
+
+    public function setAccountAccess(?int $account_access): static
+    {
+        $this->account_access = $account_access;
+
+        return $this;
+    }
+
+    public function getAccountStatus(): ?int
+    {
+        return $this->account_status;
+    }
+
+    public function setAccountStatus(?int $account_status): static
+    {
+        $this->account_status = $account_status;
+
+        return $this;
+    }
+
+    public function getAccountReason(): ?string
+    {
+        return $this->account_reason;
+    }
+
+    public function setAccountReason(?string $account_reason): static
+    {
+        $this->account_reason = $account_reason;
+
+        return $this;
+    }
+
+    public function getAccountLastAction(): ?\DateTimeInterface
+    {
+        return $this->account_last_action;
+    }
+
+    public function setAccountLastAction(?\DateTimeInterface $account_last_action): static
+    {
+        $this->account_last_action = $account_last_action;
+
+        return $this;
+    }
+
+    public function getAccountLastConnection(): ?\DateTimeInterface
+    {
+        return $this->account_last_connection;
+    }
+
+    public function setAccountLastConnection(?\DateTimeInterface $account_last_connection): static
+    {
+        $this->account_last_connection = $account_last_connection;
+
+        return $this;
+    }
+
+    public function getAccountLastIp(): ?string
+    {
+        return $this->account_last_ip;
+    }
+
+    public function setAccountLastIp(?string $account_last_ip): static
+    {
+        $this->account_last_ip = $account_last_ip;
+
+        return $this;
     }
 }

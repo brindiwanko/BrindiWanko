@@ -2,31 +2,52 @@
 
 namespace App\Controller;
 
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
-class LoginController extends AbstractController
+final class LoginController extends AbstractController
 {
-    #[Route(path: '/login', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function __construct(
+        private AuthorizationCheckerInterface $authorizationChecker,
+        private Security $security,
+        private UrlGeneratorInterface $urlGenerator,
+        private TranslatorInterface $trans,
+        private UserRepository $userRepository,
+    )
+    {}
+
+    #[Route('/login', name: 'login', methods: ['GET', 'POST'])]
+    public function login(
+        AuthenticationUtils $helper,
+        #[CurrentUser] ?UserInterface $user,
+    ): Response
     {
         // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
+        $error = $helper->getLastAuthenticationError();
+        $last_username = $helper->getLastUsername();
+        //$security = $this->security;
 
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+        // checks if the user is already authenticated
+        if($user !== null) {
+            return $this->redirectToRoute('app_home');
+        }
 
         return $this->render('login/login.html.twig', [
-            'last_username' => $lastUsername,
+            'last_username' => $last_username,
             'error' => $error,
         ]);
     }
 
-    #[Route(path: '/logout', name: 'app_logout')]
-    public function logout(): void
-    {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
-    }
+    #[Route('/logout', name: 'logout')]
+    public function logout()
+    {}
 }

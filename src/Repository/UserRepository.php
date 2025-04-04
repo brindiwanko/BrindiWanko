@@ -4,15 +4,16 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @extends ServiceEntityRepository<User>
  */
-class UserRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
+class UserRepository extends ServiceEntityRepository implements UserLoaderInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -57,4 +58,45 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     //            ->getOneOrNullResult()
     //        ;
     //    }
+    public function loadUserByIdentifier(string $identifier): ?UserInterface
+    {
+        return $this->findInternal([
+                'pseudo' => $identifier,
+            ])
+            ->getQuery()
+            ->setFirstResult(0)
+            ->getOneOrNullResult()
+        ;
+    }
+
+    protected function findInternal($params = []): QueryBuilder
+    {
+        $queryParams = [];
+
+        $query = $this->createQueryBuilder('u');
+
+        if (isset($params['id'])) {
+            $query->andWhere('u.id = :id')
+                ->setParameter('id', $params['id'])
+            ;
+        }
+
+        if (isset($params['pseudo'])) {
+            $query->andWhere('u.pseudo = :pseudo')
+                ->setParameter('pseudo', $params['pseudo'])
+            ;
+        }
+
+        if (isset($params['email'])) {
+            $query->andWhere('u.email = :email')
+                ->setParameter('email', $params['email'])
+            ;
+        }
+
+        return $query
+            //->leftJoin('c.clients', 'uc')
+            //->leftJoin('u.language', 'l')
+            ->addSelect('u') // example: 'u, c, uc, l'
+        ;
+    }
 }
