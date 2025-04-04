@@ -72,8 +72,9 @@
 		</main>
 		<footer class="footer mt-auto py-3 bg-body-tertiary">
 			<div class="container-fluid">
-				<div class="d-flex flex-column justify-content-center">
-					Footer
+				<div class="d-flex flex-column justify-content-center align-items-center">
+					<span>Page's execution time: {{ app_execution_time() }}</span>
+					<span>{{ app_parameter('app.name') ~ ': ' ~ app_parameter('app.version') }}</span>
 				</div>
 			</div>
 		</footer>

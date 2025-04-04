@@ -19,7 +19,7 @@ class AppCommonUtilitiesExtensionRuntime implements RuntimeExtensionInterface
         return $this->params->get($value);
     }
 
-    public function getExecutionTime():float
+    public function getExecutionTime():string
     {
         $request = $this->requestStack->getMainRequest();
 
