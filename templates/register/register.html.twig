@@ -17,6 +17,7 @@
 
             {{ form_start(registerForm) }}
                 {{ form_errors(registerForm) }}
+                {{ form_row(registerForm.name) }}
                 {{ form_row(registerForm.email) }}
                 {{ form_row(registerForm.plainPassword) }}
                 {{ form_row(registerForm.agreeTerms) }}

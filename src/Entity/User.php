@@ -42,6 +42,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Character::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $characters;
 
+    #[ORM\Column(length: 30)]
+    private ?string $name = null;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
@@ -148,6 +151,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $character->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
 
         return $this;
     }

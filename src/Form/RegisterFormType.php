@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Event\PostSubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -19,11 +20,13 @@ class RegisterFormType extends AbstractType
 {
     public function __construct(
         private UserPasswordHasherInterface $userPasswordHasher,
+        private UserRepository $userRepository,
     )
     {}
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('name')
             ->add('email')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -52,6 +55,7 @@ class RegisterFormType extends AbstractType
                 ],
             ])
             ->addEventListener(FormEvents::POST_SUBMIT, [$this, 'hashPassword'])
+            ->addEventListener(FormEvents::POST_SUBMIT, [$this, 'asssignAsAdminIfDatabaseHasNoAdmins'])
         ;
     }
 
@@ -73,5 +77,14 @@ class RegisterFormType extends AbstractType
 
         // encode the plain password
         $user->setPassword($hashedPassword);
+    }
+
+    public function  asssignAsAdminIfDatabaseHasNoAdmins(PostSubmitEvent $event): void
+    {
+        if ($this->userRepository->count(['roles' => 'ROLE_ADMIN']) > 0) return;
+
+        /* @var User $user */
+        $user = $event->getData();
+        $user->setRoles(['ROLE_ADMIN']);
     }
 }

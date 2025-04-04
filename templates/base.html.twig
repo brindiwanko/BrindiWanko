@@ -48,14 +48,18 @@
 						</li>
 					</ul>
 					<ul class="navbar-nav pull-right">
-						<li class="nav-item dropdown">
+						<li class="nav-item dropdown d-flex flex-row justify-content-end align-items-center column-gap-2">
+							{% if app.user %}
+								{{ 'Welcome,'|trans }} {{ app.user.email }}!
+							{% endif %}
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-bs-toggle="dropdown" aria-expanded="false">Mon compte</a>
-							<ul class="dropdown-menu" aria-labelledby="dropdown08">
+							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown08">
+								{# if is_granted('IS_AUTHENTICATED') works too #}
 								{% if app.user %}
-									<li><a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a></li>
+									<li><a class="dropdown-item" href="{{ path('app_logout') }}">{{ 'Logout'|trans }}</a></li>
 								{% else %}
-									<li><a class="dropdown-item" href="{{ path('app_login') }}">Connexion</a></li>
-									<li><a class="dropdown-item" href="{{ path('app_register') }}">Inscription</a></li>
+									<li><a class="dropdown-item" href="{{ path('app_login') }}">{{ 'Login'|trans }}</a></li>
+									<li><a class="dropdown-item" href="{{ path('app_register') }}">{{ 'Registration'|trans }}</a></li>
 								{% endif %}
 							</ul>
 						</li>
