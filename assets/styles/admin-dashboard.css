@@ -1,0 +1,17 @@
+.link-card .menu-icon {
+    width: 48px;
+    height: auto !important;
+    aspect-ratio: 1;
+}
+
+@media (min-width: 768px) {
+    .link-card .menu-icon {
+        width: 64px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .link-card .menu-icon {
+        width: 80px;
+    }
+}

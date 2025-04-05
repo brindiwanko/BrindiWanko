@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Administration'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('./styles/admin-dashboard.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'Administration'|trans }}</h1>
+    <div class="d-flex flex-column justify-content-center align-items-start w-100 h-100 py-3">
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center mx-auto w-75">
+            <div class="col">
+                <a href="{{ path('app_admin_users') }}" class="link-body-emphasis text-decoration-none link-card">
+                    <div class="card mb-4 rounded-3 shadow-sm">
+                        <div class="card-header py-3">
+                            <h4 class="my-0 fw-normal">{{ 'Users'|trans }}</h4>
+                        </div>
+                        <div class="card-body flex justify-content-center align-items-center">
+                            <i class="fa-solid fa-users m-3 menu-icon"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col">
+
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

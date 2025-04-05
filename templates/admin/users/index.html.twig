@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Users'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    <!-- <link href="{{ asset('./styles/admin-dashboard.css') }}" rel="stylesheet"> -->
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'Users'|trans }}</h1>
+    <div class="d-flex flex-column justify-content-center align-items-start w-100 h-100 py-3">
+        <div class="w-100 mb-3">
+           <a class="btn btn-outline-secondary" href="{{ path('app_admin_dashboard') }}">
+               <i class="fa-solid fa-arrow-left-long"></i>
+               {{ 'Go to Administration' }}
+           </a>
+        </div>
+        Users
+    </div>
+{% endblock %}

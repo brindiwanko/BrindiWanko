@@ -30,9 +30,9 @@
                 {% endif %}
 
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="loginform-username" placeholder="{{ 'Username'|trans }}" name="_username" value="{{ last_username }}" {% if last_username is empty %} autofocus="true" {% endif %} aria-required="true" aria-invalid="true" autocomplete="false">
+                    <input type="email" class="form-control" id="loginform-username" placeholder="{{ 'E-mail'|trans }}" name="_username" value="{{ last_username }}" {% if last_username is empty %} autofocus="true" {% endif %} aria-required="true" aria-invalid="true" autocomplete="false">
                     <label for="loginform-username">
-                        {{ 'Username'|trans }}
+                        {{ 'E-mail'|trans }}
                     </label>
                     <div class="invalid-feedback"></div>
                 </div>
