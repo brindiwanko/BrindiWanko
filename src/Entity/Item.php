@@ -15,12 +15,6 @@ class Item
     #[ORM\Column(name: "itemId")]
     private ?int $itemId = null;
 
-    #[ORM\Column]
-    private ?int $itemItemTypeId = null;
-
-    #[ORM\Column]
-    private ?int $itemRaceId = null;
-
     #[ORM\Column(type: 'text')]
     private ?string $itemPicture = null;
 
@@ -72,30 +66,6 @@ class Item
     public function getItemId(): ?int
     {
         return $this->itemId;
-    }
-
-    public function getItemItemTypeId(): ?int
-    {
-        return $this->itemItemTypeId;
-    }
-
-    public function setItemItemTypeId(int $itemItemTypeId): static
-    {
-        $this->itemItemTypeId = $itemItemTypeId;
-
-        return $this;
-    }
-
-    public function getItemRaceId(): ?int
-    {
-        return $this->itemRaceId;
-    }
-
-    public function setItemRaceId(int $itemRaceId): static
-    {
-        $this->itemRaceId = $itemRaceId;
-
-        return $this;
     }
 
     public function getItemPicture(): ?string

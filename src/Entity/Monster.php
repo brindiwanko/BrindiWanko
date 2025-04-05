@@ -16,9 +16,6 @@ class Monster
     private ?int $monsterId = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $monsterCategory = null;
-
-    #[ORM\Column(length: 50)]
     private ?string $monsterPicture = null;
 
     #[ORM\Column(length: 30)]
@@ -58,7 +55,7 @@ class Monster
     private ?int $monsterGold = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $monsterLimited = null;
+    private ?int $monsterLimited = null;
 
     #[ORM\Column]
     private ?int $monsterQuantity = null;
@@ -81,18 +78,6 @@ class Monster
     public function getMonsterId(): ?int
     {
         return $this->monsterId;
-    }
-
-    public function getMonsterCategory(): ?string
-    {
-        return $this->monsterCategory;
-    }
-
-    public function setMonsterCategory(string $monsterCategory): static
-    {
-        $this->monsterCategory = $monsterCategory;
-
-        return $this;
     }
 
     public function getMonsterPicture(): ?string
@@ -251,12 +236,12 @@ class Monster
         return $this;
     }
 
-    public function getMonsterLimited(): ?string
+    public function getMonsterLimited(): ?int
     {
         return $this->monsterLimited;
     }
 
-    public function setMonsterLimited(string $monsterLimited): static
+    public function setMonsterLimited(int $monsterLimited): static
     {
         $this->monsterLimited = $monsterLimited;
 

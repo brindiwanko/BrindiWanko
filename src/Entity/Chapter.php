@@ -15,9 +15,6 @@ class Chapter
     #[ORM\Column(name: "chapterId")]
     private ?int $chapterId = null;
 
-    #[ORM\Column]
-    private ?int $chapterMonsterId = null;
-
     #[ORM\Column(length: 30)]
     private ?string $chapterTitle = null;
 
@@ -30,18 +27,6 @@ class Chapter
     public function getChapterId(): ?int
     {
         return $this->chapterId;
-    }
-
-    public function getChapterMonsterId(): ?int
-    {
-        return $this->chapterMonsterId;
-    }
-
-    public function setChapterMonsterId(int $chapterMonsterId): static
-    {
-        $this->chapterMonsterId = $chapterMonsterId;
-
-        return $this;
     }
 
     public function getChapterTitle(): ?string
