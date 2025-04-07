@@ -9,24 +9,20 @@
 {% endblock %}
 
 {% block body %}
-    <div class="form-register mx-auto h-100">
-        <div class="w-100">
-            <h1 class="h3 mb-3 fw-normal">
-                {{ 'Register'|trans }}
-            </h1>
+    <h1 class="h3 mb-3 fw-normal">
+        {{ 'Register'|trans }}
+    </h1>
 
-            {{ form_start(registerForm) }}
-                {{ form_errors(registerForm) }}
-                {{ form_row(registerForm.name) }}
-                {{ form_row(registerForm.email) }}
-                {{ form_row(registerForm.plainPassword) }}
-                {{ form_row(registerForm.agreeTerms) }}
+    {{ form_start(registerForm) }}
+        {{ form_errors(registerForm) }}
+        {{ form_row(registerForm.name) }}
+        {{ form_row(registerForm.email) }}
+        {{ form_row(registerForm.plainPassword) }}
+        {{ form_row(registerForm.agreeTerms) }}
 
-                <button class="btn btn-primary w-100 py-2" type="submit">
-                    <i class="fa-solid fa-pen"></i>
-                    {{ 'Register'|trans }}
-                </button>
-            {{ form_end(registerForm) }}
-        </div>
-    </div>
+        <button class="btn btn-primary w-100 py-2" type="submit">
+            <i class="fa-solid fa-pen"></i>
+            {{ 'Register'|trans }}
+        </button>
+    {{ form_end(registerForm) }}
 {% endblock %}
