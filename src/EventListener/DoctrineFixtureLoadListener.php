@@ -3,6 +3,7 @@
 namespace App\EventListener;
 
 use Doctrine\DBAL\Driver\Connection;
+use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Console\ConsoleEvents;
@@ -97,6 +98,6 @@ class DoctrineFixtureLoadListener
 
     protected function isMySQL(): bool
     {
-        return $this->entityManager->getConnection()->getDatabasePlatform()->getName() === 'mysql';
+        return $this->entityManager->getConnection()->getDatabasePlatform() instanceof MySQLPlatform;
     }
 }
