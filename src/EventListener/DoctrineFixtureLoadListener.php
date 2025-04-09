@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\EventListener;
 
-use Doctrine\DBAL\Driver\Connection;
 use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\ORM\EntityManagerInterface;
-use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\Console\Event\ConsoleErrorEvent;
@@ -19,8 +19,7 @@ class DoctrineFixtureLoadListener
 
     public function __construct(
         protected EntityManagerInterface $entityManager,
-    )
-    {
+    ) {
         $this->connection = $this->entityManager->getConnection()->getNativeConnection();
     }
 
@@ -30,8 +29,12 @@ class DoctrineFixtureLoadListener
     )]
     public function onStartConsoleCommand(ConsoleCommandEvent $event): void
     {
-        if(!$this->isFixtureCommand($event)) return;
-        if(!$this->isMySQL()) return;
+        if (!$this->isFixtureCommand($event)) {
+            return;
+        }
+        if (!$this->isMySQL()) {
+            return;
+        }
 
         $io = $this->makeSymfonyStyle($event);
 
@@ -44,8 +47,12 @@ class DoctrineFixtureLoadListener
     )]
     public function onEndConsoleCommand(ConsoleTerminateEvent $event): void
     {
-        if(!$this->isFixtureCommand($event)) return;
-        if(!$this->isMySQL()) return;
+        if (!$this->isFixtureCommand($event)) {
+            return;
+        }
+        if (!$this->isMySQL()) {
+            return;
+        }
 
         $io = $this->makeSymfonyStyle($event);
 
@@ -58,8 +65,12 @@ class DoctrineFixtureLoadListener
     )]
     public function onErrorCommand(ConsoleErrorEvent $event): void
     {
-        if(!$this->isFixtureCommand($event)) return;
-        if(!$this->isMySQL()) return;
+        if (!$this->isFixtureCommand($event)) {
+            return;
+        }
+        if (!$this->isMySQL()) {
+            return;
+        }
 
         $io = $this->makeSymfonyStyle($event);
 
@@ -68,7 +79,6 @@ class DoctrineFixtureLoadListener
 
     protected function disableForeignKeyCheck(SymfonyStyle $io): void
     {
-
         $this->connection->exec('SET FOREIGN_KEY_CHECKS = 0');
         $io->note('Disabled foreign key check.');
     }
@@ -83,9 +93,9 @@ class DoctrineFixtureLoadListener
     {
         $command = $event->getCommand();
 
-        return $command !== null
+        return null !== $command
             && method_exists($command, 'getName')
-            && $command->getName() == 'doctrine:fixtures:load';
+            && 'doctrine:fixtures:load' == $command->getName();
     }
 
     protected function makeSymfonyStyle($event): SymfonyStyle

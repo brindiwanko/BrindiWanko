@@ -1,18 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\MonsterRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MonsterRepository::class)]
-#[ORM\Table(name: "bw_monsters")]
+#[ORM\Table(name: 'bw_monsters')]
 class Monster
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "id")]
+    #[ORM\Column(name: 'id')]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]

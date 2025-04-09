@@ -1,18 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\ItemRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ItemRepository::class)]
-#[ORM\Table(name: "bw_items")]
+#[ORM\Table(name: 'bw_items')]
 class Item
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "id")]
+    #[ORM\Column(name: 'id')]
     private ?int $id = null;
 
     #[ORM\Column(type: 'text')]

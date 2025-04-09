@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\EventListener;
 
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
@@ -10,6 +12,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 final class ExecutionTimeListener
 {
     private float $startTime;
+
     #[AsEventListener(
         event: KernelEvents::REQUEST,
         priority: PHP_INT_MAX,
@@ -26,7 +29,9 @@ final class ExecutionTimeListener
     )]
     public function onEndTimer(ControllerEvent $event): void
     {
-        if (!$event->isMainRequest()) return;
+        if (!$event->isMainRequest()) {
+            return;
+        }
 
         $endTime = microtime(as_float: true);
 

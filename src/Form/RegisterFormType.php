@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Form;
 
 use App\Entity\User;
@@ -21,15 +23,16 @@ class RegisterFormType extends AbstractType
     public function __construct(
         private UserPasswordHasherInterface $userPasswordHasher,
         private UserRepository $userRepository,
-    )
-    {}
+    ) {
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name')
             ->add('email')
             ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
+                'mapped'      => false,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
@@ -39,15 +42,15 @@ class RegisterFormType extends AbstractType
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-                'label' => 'Password',
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'label'       => 'Password',
+                'mapped'      => false,
+                'attr'        => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
                     ]),
                     new Length([
-                        'min' => 6,
+                        'min'        => 6,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
@@ -72,16 +75,18 @@ class RegisterFormType extends AbstractType
         $user = $event->getData();
 
         /** @var string $plainPassword */
-        $plainPassword = $event->getForm()->get('plainPassword')->getData();
+        $plainPassword  = $event->getForm()->get('plainPassword')->getData();
         $hashedPassword = $this->userPasswordHasher->hashPassword($user, $plainPassword);
 
         // encode the plain password
         $user->setPassword($hashedPassword);
     }
 
-    public function  asssignAsAdminIfDatabaseHasNoAdmins(PostSubmitEvent $event): void
+    public function asssignAsAdminIfDatabaseHasNoAdmins(PostSubmitEvent $event): void
     {
-        if ($this->userRepository->count(['roles' => 'ROLE_ADMIN']) > 0) return;
+        if ($this->userRepository->count(['roles' => 'ROLE_ADMIN']) > 0) {
+            return;
+        }
 
         /* @var User $user */
         $user = $event->getData();

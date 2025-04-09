@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use App\Repository\CharacterRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CharacterRepository::class)]
-#[ORM\Table(name: "bw_characters")]
+#[ORM\Table(name: 'bw_characters')]
 class Character
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "id")]
+    #[ORM\Column(name: 'id')]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]

@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\DataFixtures;
 
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Faker;
 
 class AppDefaultUsers extends Fixture
 {
@@ -15,11 +17,10 @@ class AppDefaultUsers extends Fixture
 
     public function __construct(
         private UserPasswordHasherInterface $hasher,
-    )
-    {
+    ) {
         $this->faker = Faker\Factory::create();
-
     }
+
     public function load(ObjectManager $manager): void
     {
         $manager->persist($this->getAdmin());
@@ -35,7 +36,7 @@ class AppDefaultUsers extends Fixture
     {
         $total_users = 10;
 
-        for ($i = 1; $i <= $total_users; $i++) {
+        for ($i = 1; $i <= $total_users; ++$i) {
             $user = new User();
 
             $password = $this->hasher->hashPassword(

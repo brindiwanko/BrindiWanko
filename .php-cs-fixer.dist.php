@@ -5,9 +5,14 @@ $finder = (new PhpCsFixer\Finder())
     ->exclude('var')
     ->exclude('vendor')
     ->exclude('node_modules')
+    // exclude special files in config
+    ->exclude('config/bundles.php')
+    ->exclude('config/preload.php')
+    // special files used by project
     ->exclude('public/index.php')
-    ->exclude('public/adminer.php')
     ->exclude('importmap.php')
+    // exclude tool
+    ->exclude('public/adminer.php')
     ->ignoreVCSIgnored(true)
 ;
 

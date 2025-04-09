@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\EventListener;
 
 use Psr\Cache\CacheItemPoolInterface;
@@ -20,8 +22,8 @@ class DoctrineMigrationMigrateListener
     public function __construct(
         private CacheItemPoolInterface $cache,
         private LockFactory $lockFactory,
-    )
-    {}
+    ) {
+    }
 
     #[AsEventListener(
         event: ConsoleEvents::COMMAND,
@@ -29,11 +31,15 @@ class DoctrineMigrationMigrateListener
     )]
     public function onStartConsoleCommand(ConsoleCommandEvent $event): void
     {
-        if(!$this->isMigrateCommand($event)) return;
+        if (!$this->isMigrateCommand($event)) {
+            return;
+        }
 
         $io = $this->makeSymfonyStyle($event);
 
-        if($this->isMigrating($io)) $event->disableCommand();
+        if ($this->isMigrating($io)) {
+            $event->disableCommand();
+        }
 
         $this->startMigration($io);
         $this->processPendingMigrations($io);
@@ -45,7 +51,9 @@ class DoctrineMigrationMigrateListener
     )]
     public function onEndConsoleCommand(ConsoleTerminateEvent $event): void
     {
-        if(!$this->isMigrateCommand($event)) return;
+        if (!$this->isMigrateCommand($event)) {
+            return;
+        }
 
         $io = $this->makeSymfonyStyle($event);
 
@@ -59,7 +67,9 @@ class DoctrineMigrationMigrateListener
     )]
     public function onErrorCommand(ConsoleErrorEvent $event): void
     {
-        if(!$this->isMigrateCommand($event)) return;
+        if (!$this->isMigrateCommand($event)) {
+            return;
+        }
 
         $io = $this->makeSymfonyStyle($event);
 
@@ -70,9 +80,9 @@ class DoctrineMigrationMigrateListener
     {
         $command = $event->getCommand();
 
-        return $command !== null
+        return null !== $command
             && method_exists($command, 'getName')
-            && $command->getName() == 'doctrine:migrations:migrate';
+            && 'doctrine:migrations:migrate' == $command->getName();
     }
 
     protected function isMigrating(SymfonyStyle $io): bool
@@ -81,10 +91,12 @@ class DoctrineMigrationMigrateListener
             $this->migrationLock = $this->lockFactory->createLock('app.lock_migration', 60);
             if (!$this->migrationLock->acquire()) {
                 $io->success('Another instance locked the migration process.');
+
                 return true;
             }
         } catch (LockAcquiringException $e) {
             $io->error('Failed to acquire migration lock: ' . $e->getMessage());
+
             return true;
         }
 
