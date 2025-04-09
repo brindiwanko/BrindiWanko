@@ -12,310 +12,310 @@ class Monster
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "monsterId")]
-    private ?int $monsterId = null;
+    #[ORM\Column(name: "id")]
+    private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $monsterPicture = null;
+    private ?string $picture = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $monsterName = null;
+    private ?string $name = null;
 
     #[ORM\Column(type: 'text')]
-    private ?string $monsterDescription = null;
+    private ?string $description = null;
 
     #[ORM\Column]
-    private ?int $monsterLevel = null;
+    private ?int $level = null;
 
     #[ORM\Column]
-    private ?int $monsterHp = null;
+    private ?int $hp = null;
 
     #[ORM\Column]
-    private ?int $monsterMp = null;
+    private ?int $mp = null;
 
     #[ORM\Column]
-    private ?int $monsterStrength = null;
+    private ?int $strength = null;
 
     #[ORM\Column]
-    private ?int $monsterMagic = null;
+    private ?int $magic = null;
 
     #[ORM\Column]
-    private ?int $monsterAgility = null;
+    private ?int $agility = null;
 
     #[ORM\Column]
-    private ?int $monsterDefense = null;
+    private ?int $defense = null;
 
     #[ORM\Column]
-    private ?int $monsterDefenseMagic = null;
+    private ?int $defenseMagic = null;
 
     #[ORM\Column]
-    private ?int $monsterExperience = null;
+    private ?int $eperience = null;
 
     #[ORM\Column]
-    private ?int $monsterGold = null;
+    private ?int $gold = null;
 
     #[ORM\Column(length: 30)]
-    private ?int $monsterLimited = null;
+    private ?int $limited = null;
 
     #[ORM\Column]
-    private ?int $monsterQuantity = null;
+    private ?int $quantity = null;
 
     #[ORM\Column]
-    private ?int $monsterQuantityBattle = null;
+    private ?int $quantityBattle = null;
 
     #[ORM\Column]
-    private ?int $monsterQuantityEscaped = null;
+    private ?int $quantityEscaped = null;
 
     #[ORM\Column]
-    private ?int $monsterQuantityVictory = null;
+    private ?int $quantityVictory = null;
 
     #[ORM\Column]
-    private ?int $monsterQuantityDefeated = null;
+    private ?int $quantityDefeated = null;
 
     #[ORM\Column]
-    private ?int $monsterQuantityDraw = null;
+    private ?int $quantityDraw = null;
 
-    public function getMonsterId(): ?int
+    public function getId(): ?int
     {
-        return $this->monsterId;
+        return $this->id;
     }
 
-    public function getMonsterPicture(): ?string
+    public function getPicture(): ?string
     {
-        return $this->monsterPicture;
+        return $this->picture;
     }
 
-    public function setMonsterPicture(string $monsterPicture): static
+    public function setPicture(string $picture): static
     {
-        $this->monsterPicture = $monsterPicture;
+        $this->picture = $picture;
 
         return $this;
     }
 
-    public function getMonsterName(): ?string
+    public function getName(): ?string
     {
-        return $this->monsterName;
+        return $this->name;
     }
 
-    public function setMonsterName(string $monsterName): static
+    public function setName(string $name): static
     {
-        $this->monsterName = $monsterName;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getMonsterDescription(): ?string
+    public function getDescription(): ?string
     {
-        return $this->monsterDescription;
+        return $this->description;
     }
 
-    public function setMonsterDescription(string $monsterDescription): static
+    public function setDescription(string $description): static
     {
-        $this->monsterDescription = $monsterDescription;
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getMonsterLevel(): ?int
+    public function getLevel(): ?int
     {
-        return $this->monsterLevel;
+        return $this->level;
     }
 
-    public function setMonsterLevel(int $monsterLevel): static
+    public function setLevel(int $level): static
     {
-        $this->monsterLevel = $monsterLevel;
+        $this->level = $level;
 
         return $this;
     }
 
-    public function getMonsterHp(): ?int
+    public function getHp(): ?int
     {
-        return $this->monsterHp;
+        return $this->hp;
     }
 
-    public function setMonsterHp(int $monsterHp): static
+    public function setHp(int $hp): static
     {
-        $this->monsterHp = $monsterHp;
+        $this->hp = $hp;
 
         return $this;
     }
 
-    public function getMonsterMp(): ?int
+    public function getMp(): ?int
     {
-        return $this->monsterMp;
+        return $this->mp;
     }
 
-    public function setMonsterMp(int $monsterMp): static
+    public function setMp(int $mp): static
     {
-        $this->monsterMp = $monsterMp;
+        $this->mp = $mp;
 
         return $this;
     }
 
-    public function getMonsterStrength(): ?int
+    public function getStrength(): ?int
     {
-        return $this->monsterStrength;
+        return $this->strength;
     }
 
-    public function setMonsterStrength(int $monsterStrength): static
+    public function setStrength(int $strength): static
     {
-        $this->monsterStrength = $monsterStrength;
+        $this->strength = $strength;
 
         return $this;
     }
 
-    public function getMonsterMagic(): ?int
+    public function getMagic(): ?int
     {
-        return $this->monsterMagic;
+        return $this->magic;
     }
 
-    public function setMonsterMagic(int $monsterMagic): static
+    public function setMagic(int $magic): static
     {
-        $this->monsterMagic = $monsterMagic;
+        $this->magic = $magic;
 
         return $this;
     }
 
-    public function getMonsterAgility(): ?int
+    public function getAgility(): ?int
     {
-        return $this->monsterAgility;
+        return $this->agility;
     }
 
-    public function setMonsterAgility(int $monsterAgility): static
+    public function setAgility(int $agility): static
     {
-        $this->monsterAgility = $monsterAgility;
+        $this->agility = $agility;
 
         return $this;
     }
 
-    public function getMonsterDefense(): ?int
+    public function getDefense(): ?int
     {
-        return $this->monsterDefense;
+        return $this->defense;
     }
 
-    public function setMonsterDefense(int $monsterDefense): static
+    public function setDefense(int $defense): static
     {
-        $this->monsterDefense = $monsterDefense;
+        $this->defense = $defense;
 
         return $this;
     }
 
-    public function getMonsterDefenseMagic(): ?int
+    public function getDefenseMagic(): ?int
     {
-        return $this->monsterDefenseMagic;
+        return $this->defenseMagic;
     }
 
-    public function setMonsterDefenseMagic(int $monsterDefenseMagic): static
+    public function setDefenseMagic(int $defenseMagic): static
     {
-        $this->monsterDefenseMagic = $monsterDefenseMagic;
+        $this->defenseMagic = $defenseMagic;
 
         return $this;
     }
 
-    public function getMonsterExperience(): ?int
+    public function getEperience(): ?int
     {
-        return $this->monsterExperience;
+        return $this->eperience;
     }
 
-    public function setMonsterExperience(int $monsterExperience): static
+    public function setEperience(int $eperience): static
     {
-        $this->monsterExperience = $monsterExperience;
+        $this->eperience = $eperience;
 
         return $this;
     }
 
-    public function getMonsterGold(): ?int
+    public function getGold(): ?int
     {
-        return $this->monsterGold;
+        return $this->gold;
     }
 
-    public function setMonsterGold(int $monsterGold): static
+    public function setGold(int $gold): static
     {
-        $this->monsterGold = $monsterGold;
+        $this->gold = $gold;
 
         return $this;
     }
 
-    public function getMonsterLimited(): ?int
+    public function getLimited(): ?int
     {
-        return $this->monsterLimited;
+        return $this->limited;
     }
 
-    public function setMonsterLimited(int $monsterLimited): static
+    public function setLimited(int $limited): static
     {
-        $this->monsterLimited = $monsterLimited;
+        $this->limited = $limited;
 
         return $this;
     }
 
-    public function getMonsterQuantity(): ?int
+    public function getQuantity(): ?int
     {
-        return $this->monsterQuantity;
+        return $this->quantity;
     }
 
-    public function setMonsterQuantity(int $monsterQuantity): static
+    public function setQuantity(int $quantity): static
     {
-        $this->monsterQuantity = $monsterQuantity;
+        $this->quantity = $quantity;
 
         return $this;
     }
 
-    public function getMonsterQuantityBattle(): ?int
+    public function getQuantityBattle(): ?int
     {
-        return $this->monsterQuantityBattle;
+        return $this->quantityBattle;
     }
 
-    public function setMonsterQuantityBattle(int $monsterQuantityBattle): static
+    public function setQuantityBattle(int $quantityBattle): static
     {
-        $this->monsterQuantityBattle = $monsterQuantityBattle;
+        $this->quantityBattle = $quantityBattle;
 
         return $this;
     }
 
-    public function getMonsterQuantityEscaped(): ?int
+    public function getQuantityEscaped(): ?int
     {
-        return $this->monsterQuantityEscaped;
+        return $this->quantityEscaped;
     }
 
-    public function setMonsterQuantityEscaped(int $monsterQuantityEscaped): static
+    public function setQuantityEscaped(int $quantityEscaped): static
     {
-        $this->monsterQuantityEscaped = $monsterQuantityEscaped;
+        $this->quantityEscaped = $quantityEscaped;
 
         return $this;
     }
 
-    public function getMonsterQuantityVictory(): ?int
+    public function getQuantityVictory(): ?int
     {
-        return $this->monsterQuantityVictory;
+        return $this->quantityVictory;
     }
 
-    public function setMonsterQuantityVictory(int $monsterQuantityVictory): static
+    public function setQuantityVictory(int $quantityVictory): static
     {
-        $this->monsterQuantityVictory = $monsterQuantityVictory;
+        $this->quantityVictory = $quantityVictory;
 
         return $this;
     }
 
-    public function getMonsterQuantityDefeated(): ?int
+    public function getQuantityDefeated(): ?int
     {
-        return $this->monsterQuantityDefeated;
+        return $this->quantityDefeated;
     }
 
-    public function setMonsterQuantityDefeated(int $monsterQuantityDefeated): static
+    public function setQuantityDefeated(int $quantityDefeated): static
     {
-        $this->monsterQuantityDefeated = $monsterQuantityDefeated;
+        $this->quantityDefeated = $quantityDefeated;
 
         return $this;
     }
 
-    public function getMonsterQuantityDraw(): ?int
+    public function getQuantityDraw(): ?int
     {
-        return $this->monsterQuantityDraw;
+        return $this->quantityDraw;
     }
 
-    public function setMonsterQuantityDraw(int $monsterQuantityDraw): static
+    public function setQuantityDraw(int $quantityDraw): static
     {
-        $this->monsterQuantityDraw = $monsterQuantityDraw;
+        $this->quantityDraw = $quantityDraw;
 
         return $this;
     }

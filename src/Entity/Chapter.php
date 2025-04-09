@@ -12,55 +12,55 @@ class Chapter
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "chapterId")]
-    private ?int $chapterId = null;
+    #[ORM\Column(name: "id")]
+    private ?int $id = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $chapterTitle = null;
+    private ?string $title = null;
 
     #[ORM\Column(type: 'text')]
-    private ?string $chapterOpening = null;
+    private ?string $opening = null;
 
     #[ORM\Column(type: 'text')]
-    private ?string $chapterEnding = null;
+    private ?string $ending = null;
 
-    public function getChapterId(): ?int
+    public function getId(): ?int
     {
-        return $this->chapterId;
+        return $this->id;
     }
 
-    public function getChapterTitle(): ?string
+    public function getTitle(): ?string
     {
-        return $this->chapterTitle;
+        return $this->title;
     }
 
-    public function setChapterTitle(string $chapterTitle): static
+    public function setTitle(string $title): static
     {
-        $this->chapterTitle = $chapterTitle;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getChapterOpening(): ?string
+    public function getOpening(): ?string
     {
-        return $this->chapterOpening;
+        return $this->opening;
     }
 
-    public function setChapterOpening(string $chapterOpening): static
+    public function setOpening(string $opening): static
     {
-        $this->chapterOpening = $chapterOpening;
+        $this->opening = $opening;
 
         return $this;
     }
 
-    public function getChapterEnding(): ?string
+    public function getEnding(): ?string
     {
-        return $this->chapterEnding;
+        return $this->ending;
     }
 
-    public function setChapterEnding(string $chapterEnding): static
+    public function setEnding(string $ending): static
     {
-        $this->chapterEnding = $chapterEnding;
+        $this->ending = $ending;
 
         return $this;
     }

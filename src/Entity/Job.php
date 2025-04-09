@@ -12,190 +12,190 @@ class Job
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "jobId")]
-    private ?int $jobId = null;
+    #[ORM\Column(name: "id")]
+    private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    private ?string $jobPicture = null;
+    private ?string $picture = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $jobName = null;
+    private ?string $name = null;
 
     #[ORM\Column(type: 'text')]
-    private ?string $jobDescription = null;
+    private ?string $description = null;
 
     #[ORM\Column]
-    private ?int $jobHpBonus = null;
+    private ?int $hpBonus = null;
 
     #[ORM\Column]
-    private ?int $jobMpBonus = null;
+    private ?int $mpBonus = null;
 
     #[ORM\Column]
-    private ?int $jobStrengthBonus = null;
+    private ?int $strengthBonus = null;
 
     #[ORM\Column]
-    private ?int $jobMagicBonus = null;
+    private ?int $magicBonus = null;
 
     #[ORM\Column]
-    private ?int $jobAgilityBonus = null;
+    private ?int $agilityBonus = null;
 
     #[ORM\Column]
-    private ?int $jobDefenseBonus = null;
+    private ?int $defenseBonus = null;
 
     #[ORM\Column]
-    private ?int $jobDefenseMagicBonus = null;
+    private ?int $defenseMagicBonus = null;
 
     #[ORM\Column]
-    private ?int $jobWisdomBonus = null;
+    private ?int $wisdomBonus = null;
 
     #[ORM\Column]
-    private ?int $jobProspectingBonus = null;
+    private ?int $prospectingBonus = null;
 
-    public function getJobId(): ?int
+    public function getId(): ?int
     {
-        return $this->jobId;
+        return $this->id;
     }
 
-    public function getJobPicture(): ?string
+    public function getPicture(): ?string
     {
-        return $this->jobPicture;
+        return $this->picture;
     }
 
-    public function setJobPicture(string $jobPicture): static
+    public function setPicture(string $picture): static
     {
-        $this->jobPicture = $jobPicture;
+        $this->picture = $picture;
 
         return $this;
     }
 
-    public function getJobName(): ?string
+    public function getName(): ?string
     {
-        return $this->jobName;
+        return $this->name;
     }
 
-    public function setJobName(string $jobName): static
+    public function setName(string $name): static
     {
-        $this->jobName = $jobName;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getJobDescription(): ?string
+    public function getDescription(): ?string
     {
-        return $this->jobDescription;
+        return $this->description;
     }
 
-    public function setJobDescription(string $jobDescription): static
+    public function setDescription(string $description): static
     {
-        $this->jobDescription = $jobDescription;
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getJobHpBonus(): ?int
+    public function getHpBonus(): ?int
     {
-        return $this->jobHpBonus;
+        return $this->hpBonus;
     }
 
-    public function setJobHpBonus(int $jobHpBonus): static
+    public function setHpBonus(int $hpBonus): static
     {
-        $this->jobHpBonus = $jobHpBonus;
+        $this->hpBonus = $hpBonus;
 
         return $this;
     }
 
-    public function getJobMpBonus(): ?int
+    public function getMpBonus(): ?int
     {
-        return $this->jobMpBonus;
+        return $this->mpBonus;
     }
 
-    public function setJobMpBonus(int $jobMpBonus): static
+    public function setMpBonus(int $mpBonus): static
     {
-        $this->jobMpBonus = $jobMpBonus;
+        $this->mpBonus = $mpBonus;
 
         return $this;
     }
 
-    public function getJobStrengthBonus(): ?int
+    public function getStrengthBonus(): ?int
     {
-        return $this->jobStrengthBonus;
+        return $this->strengthBonus;
     }
 
-    public function setJobStrengthBonus(int $jobStrengthBonus): static
+    public function setStrengthBonus(int $strengthBonus): static
     {
-        $this->jobStrengthBonus = $jobStrengthBonus;
+        $this->strengthBonus = $strengthBonus;
 
         return $this;
     }
 
-    public function getJobMagicBonus(): ?int
+    public function getMagicBonus(): ?int
     {
-        return $this->jobMagicBonus;
+        return $this->magicBonus;
     }
 
-    public function setJobMagicBonus(int $jobMagicBonus): static
+    public function setMagicBonus(int $magicBonus): static
     {
-        $this->jobMagicBonus = $jobMagicBonus;
+        $this->magicBonus = $magicBonus;
 
         return $this;
     }
 
-    public function getJobAgilityBonus(): ?int
+    public function getAgilityBonus(): ?int
     {
-        return $this->jobAgilityBonus;
+        return $this->agilityBonus;
     }
 
-    public function setJobAgilityBonus(int $jobAgilityBonus): static
+    public function setAgilityBonus(int $agilityBonus): static
     {
-        $this->jobAgilityBonus = $jobAgilityBonus;
+        $this->agilityBonus = $agilityBonus;
 
         return $this;
     }
 
-    public function getJobDefenseBonus(): ?int
+    public function getDefenseBonus(): ?int
     {
-        return $this->jobDefenseBonus;
+        return $this->defenseBonus;
     }
 
-    public function setJobDefenseBonus(int $jobDefenseBonus): static
+    public function setDefenseBonus(int $defenseBonus): static
     {
-        $this->jobDefenseBonus = $jobDefenseBonus;
+        $this->defenseBonus = $defenseBonus;
 
         return $this;
     }
 
-    public function getJobDefenseMagicBonus(): ?int
+    public function getDefenseMagicBonus(): ?int
     {
-        return $this->jobDefenseMagicBonus;
+        return $this->defenseMagicBonus;
     }
 
-    public function setJobDefenseMagicBonus(int $jobDefenseMagicBonus): static
+    public function setDefenseMagicBonus(int $defenseMagicBonus): static
     {
-        $this->jobDefenseMagicBonus = $jobDefenseMagicBonus;
+        $this->defenseMagicBonus = $defenseMagicBonus;
 
         return $this;
     }
 
-    public function getJobWisdomBonus(): ?int
+    public function getWisdomBonus(): ?int
     {
-        return $this->jobWisdomBonus;
+        return $this->wisdomBonus;
     }
 
-    public function setJobWisdomBonus(int $jobWisdomBonus): static
+    public function setWisdomBonus(int $wisdomBonus): static
     {
-        $this->jobWisdomBonus = $jobWisdomBonus;
+        $this->wisdomBonus = $wisdomBonus;
 
         return $this;
     }
 
-    public function getJobProspectingBonus(): ?int
+    public function getProspectingBonus(): ?int
     {
-        return $this->jobProspectingBonus;
+        return $this->prospectingBonus;
     }
 
-    public function setJobProspectingBonus(int $jobProspectingBonus): static
+    public function setProspectingBonus(int $prospectingBonus): static
     {
-        $this->jobProspectingBonus = $jobProspectingBonus;
+        $this->prospectingBonus = $prospectingBonus;
 
         return $this;
     }

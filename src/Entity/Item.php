@@ -12,250 +12,250 @@ class Item
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: "itemId")]
-    private ?int $itemId = null;
+    #[ORM\Column(name: "id")]
+    private ?int $id = null;
 
     #[ORM\Column(type: 'text')]
-    private ?string $itemPicture = null;
+    private ?string $picture = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $itemName = null;
+    private ?string $name = null;
 
     #[ORM\Column(type: 'text')]
-    private ?string $itemDescription = null;
+    private ?string $description = null;
 
     #[ORM\Column]
-    private ?int $itemLevel = null;
+    private ?int $level = null;
 
     #[ORM\Column]
-    private ?int $itemLevelRequired = null;
+    private ?int $levelRequired = null;
 
     #[ORM\Column]
-    private ?int $itemHpEffect = null;
+    private ?int $hpEffect = null;
 
     #[ORM\Column]
-    private ?int $itemMpEffect = null;
+    private ?int $mpEffect = null;
 
     #[ORM\Column]
-    private ?int $itemStrengthEffect = null;
+    private ?int $strengthEffect = null;
 
     #[ORM\Column]
-    private ?int $itemMagicEffect = null;
+    private ?int $magicEffect = null;
 
     #[ORM\Column]
-    private ?int $itemAgilityEffect = null;
+    private ?int $agilityEffect = null;
 
     #[ORM\Column]
-    private ?int $itemDefenseEffect = null;
+    private ?int $defenseEffect = null;
 
     #[ORM\Column]
-    private ?int $itemDefenseMagicEffect = null;
+    private ?int $defenseMagicEffect = null;
 
     #[ORM\Column]
-    private ?int $itemWisdomEffect = null;
+    private ?int $wisdomEffect = null;
 
     #[ORM\Column]
-    private ?int $itemProspectingEffect = null;
+    private ?int $prospectingEffect = null;
 
     #[ORM\Column]
-    private ?int $itemPurchasePrice = null;
+    private ?int $purchasePrice = null;
 
     #[ORM\Column]
-    private ?int $itemSalePrice = null;
+    private ?int $salePrice = null;
 
-    public function getItemId(): ?int
+    public function getId(): ?int
     {
-        return $this->itemId;
+        return $this->id;
     }
 
-    public function getItemPicture(): ?string
+    public function getPicture(): ?string
     {
-        return $this->itemPicture;
+        return $this->picture;
     }
 
-    public function setItemPicture(string $itemPicture): static
+    public function setPicture(string $picture): static
     {
-        $this->itemPicture = $itemPicture;
+        $this->picture = $picture;
 
         return $this;
     }
 
-    public function getItemName(): ?string
+    public function getName(): ?string
     {
-        return $this->itemName;
+        return $this->name;
     }
 
-    public function setItemName(string $itemName): static
+    public function setName(string $name): static
     {
-        $this->itemName = $itemName;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getItemDescription(): ?string
+    public function getDescription(): ?string
     {
-        return $this->itemDescription;
+        return $this->description;
     }
 
-    public function setItemDescription(string $itemDescription): static
+    public function setDescription(string $description): static
     {
-        $this->itemDescription = $itemDescription;
+        $this->description = $description;
 
         return $this;
     }
 
-    public function getItemLevel(): ?int
+    public function getLevel(): ?int
     {
-        return $this->itemLevel;
+        return $this->level;
     }
 
-    public function setItemLevel(int $itemLevel): static
+    public function setLevel(int $level): static
     {
-        $this->itemLevel = $itemLevel;
+        $this->level = $level;
 
         return $this;
     }
 
-    public function getItemLevelRequired(): ?int
+    public function getLevelRequired(): ?int
     {
-        return $this->itemLevelRequired;
+        return $this->levelRequired;
     }
 
-    public function setItemLevelRequired(int $itemLevelRequired): static
+    public function setLevelRequired(int $levelRequired): static
     {
-        $this->itemLevelRequired = $itemLevelRequired;
+        $this->levelRequired = $levelRequired;
 
         return $this;
     }
 
-    public function getItemHpEffect(): ?int
+    public function getHpEffect(): ?int
     {
-        return $this->itemHpEffect;
+        return $this->hpEffect;
     }
 
-    public function setItemHpEffect(int $itemHpEffect): static
+    public function setHpEffect(int $hpEffect): static
     {
-        $this->itemHpEffect = $itemHpEffect;
+        $this->hpEffect = $hpEffect;
 
         return $this;
     }
 
-    public function getItemMpEffect(): ?int
+    public function getMpEffect(): ?int
     {
-        return $this->itemMpEffect;
+        return $this->mpEffect;
     }
 
-    public function setItemMpEffect(int $itemMpEffect): static
+    public function setMpEffect(int $mpEffect): static
     {
-        $this->itemMpEffect = $itemMpEffect;
+        $this->mpEffect = $mpEffect;
 
         return $this;
     }
 
-    public function getItemStrengthEffect(): ?int
+    public function getStrengthEffect(): ?int
     {
-        return $this->itemStrengthEffect;
+        return $this->strengthEffect;
     }
 
-    public function setItemStrengthEffect(int $itemStrengthEffect): static
+    public function setStrengthEffect(int $strengthEffect): static
     {
-        $this->itemStrengthEffect = $itemStrengthEffect;
+        $this->strengthEffect = $strengthEffect;
 
         return $this;
     }
 
-    public function getItemMagicEffect(): ?int
+    public function getMagicEffect(): ?int
     {
-        return $this->itemMagicEffect;
+        return $this->magicEffect;
     }
 
-    public function setItemMagicEffect(int $itemMagicEffect): static
+    public function setMagicEffect(int $magicEffect): static
     {
-        $this->itemMagicEffect = $itemMagicEffect;
+        $this->magicEffect = $magicEffect;
 
         return $this;
     }
 
-    public function getItemAgilityEffect(): ?int
+    public function getAgilityEffect(): ?int
     {
-        return $this->itemAgilityEffect;
+        return $this->agilityEffect;
     }
 
-    public function setItemAgilityEffect(int $itemAgilityEffect): static
+    public function setAgilityEffect(int $agilityEffect): static
     {
-        $this->itemAgilityEffect = $itemAgilityEffect;
+        $this->agilityEffect = $agilityEffect;
 
         return $this;
     }
 
-    public function getItemDefenseEffect(): ?int
+    public function getDefenseEffect(): ?int
     {
-        return $this->itemDefenseEffect;
+        return $this->defenseEffect;
     }
 
-    public function setItemDefenseEffect(int $itemDefenseEffect): static
+    public function setDefenseEffect(int $defenseEffect): static
     {
-        $this->itemDefenseEffect = $itemDefenseEffect;
+        $this->defenseEffect = $defenseEffect;
 
         return $this;
     }
 
-    public function getItemDefenseMagicEffect(): ?int
+    public function getDefenseMagicEffect(): ?int
     {
-        return $this->itemDefenseMagicEffect;
+        return $this->defenseMagicEffect;
     }
 
-    public function setItemDefenseMagicEffect(int $itemDefenseMagicEffect): static
+    public function setDefenseMagicEffect(int $defenseMagicEffect): static
     {
-        $this->itemDefenseMagicEffect = $itemDefenseMagicEffect;
+        $this->defenseMagicEffect = $defenseMagicEffect;
 
         return $this;
     }
 
-    public function getItemWisdomEffect(): ?int
+    public function getWisdomEffect(): ?int
     {
-        return $this->itemWisdomEffect;
+        return $this->wisdomEffect;
     }
 
-    public function setItemWisdomEffect(int $itemWisdomEffect): static
+    public function setWisdomEffect(int $wisdomEffect): static
     {
-        $this->itemWisdomEffect = $itemWisdomEffect;
+        $this->wisdomEffect = $wisdomEffect;
 
         return $this;
     }
 
-    public function getItemProspectingEffect(): ?int
+    public function getProspectingEffect(): ?int
     {
-        return $this->itemProspectingEffect;
+        return $this->prospectingEffect;
     }
 
-    public function setItemProspectingEffect(int $itemProspectingEffect): static
+    public function setProspectingEffect(int $prospectingEffect): static
     {
-        $this->itemProspectingEffect = $itemProspectingEffect;
+        $this->prospectingEffect = $prospectingEffect;
 
         return $this;
     }
 
-    public function getItemPurchasePrice(): ?int
+    public function getPurchasePrice(): ?int
     {
-        return $this->itemPurchasePrice;
+        return $this->purchasePrice;
     }
 
-    public function setItemPurchasePrice(int $itemPurchasePrice): static
+    public function setPurchasePrice(int $purchasePrice): static
     {
-        $this->itemPurchasePrice = $itemPurchasePrice;
+        $this->purchasePrice = $purchasePrice;
 
         return $this;
     }
 
-    public function getItemSalePrice(): ?int
+    public function getSalePrice(): ?int
     {
-        return $this->itemSalePrice;
+        return $this->salePrice;
     }
 
-    public function setItemSalePrice(int $itemSalePrice): static
+    public function setSalePrice(int $salePrice): static
     {
-        $this->itemSalePrice = $itemSalePrice;
+        $this->salePrice = $salePrice;
 
         return $this;
     }
