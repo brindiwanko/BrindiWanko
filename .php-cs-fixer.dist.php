@@ -3,7 +3,8 @@
 $finder = (new PhpCsFixer\Finder())
     ->in(__DIR__)
     ->exclude('var')
-    ->exclude('var')
+    ->exclude('vendor')
+    ->exclude('node_modules')
     ->ignoreVCSIgnored(true)
 ;
 
