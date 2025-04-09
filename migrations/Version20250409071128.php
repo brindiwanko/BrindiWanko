@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250409063001 extends AbstractMigration
+final class Version20250409071128 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -30,7 +30,7 @@ final class Version20250409063001 extends AbstractMigration
             CREATE INDEX IDX_3EC4176A76ED395 ON bw_characters (user_id)
         SQL);
         $this->addSql(<<<'SQL'
-            CREATE TABLE bw_configuration (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, game_name VARCHAR(30) NOT NULL, presentation CLOB NOT NULL, max_level INTEGER NOT NULL, experience INTEGER NOT NULL, skill_point INTEGER NOT NULL, experience_bonus INTEGER NOT NULL, gold_bonus INTEGER NOT NULL, drop_bonus INTEGER NOT NULL, access VARCHAR(30) NOT NULL)
+            CREATE TABLE bw_configurations (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, game_name VARCHAR(30) NOT NULL, presentation CLOB NOT NULL, max_level INTEGER NOT NULL, experience INTEGER NOT NULL, skill_point INTEGER NOT NULL, experience_bonus INTEGER NOT NULL, gold_bonus INTEGER NOT NULL, drop_bonus INTEGER NOT NULL, access VARCHAR(30) NOT NULL)
         SQL);
         $this->addSql(<<<'SQL'
             CREATE TABLE bw_items (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, picture CLOB NOT NULL, name VARCHAR(30) NOT NULL, description CLOB NOT NULL, level INTEGER NOT NULL, level_required INTEGER NOT NULL, hp_effect INTEGER NOT NULL, mp_effect INTEGER NOT NULL, strength_effect INTEGER NOT NULL, magic_effect INTEGER NOT NULL, agility_effect INTEGER NOT NULL, defense_effect INTEGER NOT NULL, defense_magic_effect INTEGER NOT NULL, wisdom_effect INTEGER NOT NULL, prospecting_effect INTEGER NOT NULL, purchase_price INTEGER NOT NULL, sale_price INTEGER NOT NULL)
@@ -78,7 +78,7 @@ final class Version20250409063001 extends AbstractMigration
             DROP TABLE bw_characters
         SQL);
         $this->addSql(<<<'SQL'
-            DROP TABLE bw_configuration
+            DROP TABLE bw_configurations
         SQL);
         $this->addSql(<<<'SQL'
             DROP TABLE bw_items
