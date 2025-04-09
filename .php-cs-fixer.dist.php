@@ -5,6 +5,9 @@ $finder = (new PhpCsFixer\Finder())
     ->exclude('var')
     ->exclude('vendor')
     ->exclude('node_modules')
+    ->exclude('public/index.php')
+    ->exclude('public/adminer.php')
+    ->exclude('importmap.php')
     ->ignoreVCSIgnored(true)
 ;
 
