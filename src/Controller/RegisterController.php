@@ -9,11 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegisterController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, EntityManagerInterface $entityManager, TranslatorInterface $trans): Response
     {
         $user = new User();
         $form = $this->createForm(RegisterFormType::class, $user);
@@ -27,6 +28,10 @@ class RegisterController extends AbstractController
             $entityManager->flush();
 
             // @todo do anything else you need here, like send an email
+            $this->addFlash(
+                type: 'success',
+                message: $trans->trans('You have been registered successfully.'),
+            );
 
             return $this->redirectToRoute('app_home');
         }
