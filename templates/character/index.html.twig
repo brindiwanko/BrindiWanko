@@ -1,0 +1,171 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Character index{% endblock %}
+
+{% block body %}
+    <h1>Character index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Picture</th>
+                <th>Name</th>
+                <th>Level</th>
+                <th>Sex</th>
+                <th>HpMin</th>
+                <th>HpMax</th>
+                <th>HpSkillPoints</th>
+                <th>HpBonus</th>
+                <th>HpEquipments</th>
+                <th>HpGuild</th>
+                <th>HpTotal</th>
+                <th>MpMin</th>
+                <th>MpMax</th>
+                <th>MpSkillPoints</th>
+                <th>MpBonus</th>
+                <th>MpEquipments</th>
+                <th>MpGuild</th>
+                <th>MpTotal</th>
+                <th>Strength</th>
+                <th>StrengthSkillPoints</th>
+                <th>StrengthBonus</th>
+                <th>StrengthEquipments</th>
+                <th>StrengthGuild</th>
+                <th>StrengthTotal</th>
+                <th>Magic</th>
+                <th>MagicSkillPoints</th>
+                <th>MagicBonus</th>
+                <th>MagicEquipments</th>
+                <th>MagicGuild</th>
+                <th>MagicTotal</th>
+                <th>Agility</th>
+                <th>AgilitySkillPoints</th>
+                <th>AgilityBonus</th>
+                <th>AgilityEquipments</th>
+                <th>AgilityGuild</th>
+                <th>AgilityTotal</th>
+                <th>Defense</th>
+                <th>DefenseSkillPoints</th>
+                <th>DefenseBonus</th>
+                <th>DefenseEquipments</th>
+                <th>DefenseGuild</th>
+                <th>DefenseTotal</th>
+                <th>DefenseMagic</th>
+                <th>DefenseMagicSkillPoints</th>
+                <th>DefenseMagicBonus</th>
+                <th>DefenseMagicEquipments</th>
+                <th>DefenseMagicGuild</th>
+                <th>DefenseMagicTotal</th>
+                <th>Wisdom</th>
+                <th>WisdomSkillPoints</th>
+                <th>WisdomBonus</th>
+                <th>WisdomEquipments</th>
+                <th>WisdomGuild</th>
+                <th>WisdomTotal</th>
+                <th>Prospecting</th>
+                <th>ProspectingSkillPoints</th>
+                <th>ProspectingBonus</th>
+                <th>ProspectingEquipments</th>
+                <th>ProspectingGuild</th>
+                <th>ProspectingTotal</th>
+                <th>ArenaDefeate</th>
+                <th>ArenaVictory</th>
+                <th>Experience</th>
+                <th>ExperienceTotal</th>
+                <th>SkillPoints</th>
+                <th>Gold</th>
+                <th>Chapter</th>
+                <th>OnBattle</th>
+                <th>Enable</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for character in characters %}
+            <tr>
+                <td>{{ character.id }}</td>
+                <td>{{ character.picture }}</td>
+                <td>{{ character.name }}</td>
+                <td>{{ character.level }}</td>
+                <td>{{ character.sex }}</td>
+                <td>{{ character.hpMin }}</td>
+                <td>{{ character.hpMax }}</td>
+                <td>{{ character.hpSkillPoints }}</td>
+                <td>{{ character.hpBonus }}</td>
+                <td>{{ character.hpEquipments }}</td>
+                <td>{{ character.hpGuild }}</td>
+                <td>{{ character.hpTotal }}</td>
+                <td>{{ character.mpMin }}</td>
+                <td>{{ character.mpMax }}</td>
+                <td>{{ character.mpSkillPoints }}</td>
+                <td>{{ character.mpBonus }}</td>
+                <td>{{ character.mpEquipments }}</td>
+                <td>{{ character.mpGuild }}</td>
+                <td>{{ character.mpTotal }}</td>
+                <td>{{ character.strength }}</td>
+                <td>{{ character.strengthSkillPoints }}</td>
+                <td>{{ character.strengthBonus }}</td>
+                <td>{{ character.strengthEquipments }}</td>
+                <td>{{ character.strengthGuild }}</td>
+                <td>{{ character.strengthTotal }}</td>
+                <td>{{ character.magic }}</td>
+                <td>{{ character.magicSkillPoints }}</td>
+                <td>{{ character.magicBonus }}</td>
+                <td>{{ character.magicEquipments }}</td>
+                <td>{{ character.magicGuild }}</td>
+                <td>{{ character.magicTotal }}</td>
+                <td>{{ character.agility }}</td>
+                <td>{{ character.agilitySkillPoints }}</td>
+                <td>{{ character.agilityBonus }}</td>
+                <td>{{ character.agilityEquipments }}</td>
+                <td>{{ character.agilityGuild }}</td>
+                <td>{{ character.agilityTotal }}</td>
+                <td>{{ character.defense }}</td>
+                <td>{{ character.defenseSkillPoints }}</td>
+                <td>{{ character.defenseBonus }}</td>
+                <td>{{ character.defenseEquipments }}</td>
+                <td>{{ character.defenseGuild }}</td>
+                <td>{{ character.defenseTotal }}</td>
+                <td>{{ character.defenseMagic }}</td>
+                <td>{{ character.defenseMagicSkillPoints }}</td>
+                <td>{{ character.defenseMagicBonus }}</td>
+                <td>{{ character.defenseMagicEquipments }}</td>
+                <td>{{ character.defenseMagicGuild }}</td>
+                <td>{{ character.defenseMagicTotal }}</td>
+                <td>{{ character.wisdom }}</td>
+                <td>{{ character.wisdomSkillPoints }}</td>
+                <td>{{ character.wisdomBonus }}</td>
+                <td>{{ character.wisdomEquipments }}</td>
+                <td>{{ character.wisdomGuild }}</td>
+                <td>{{ character.wisdomTotal }}</td>
+                <td>{{ character.prospecting }}</td>
+                <td>{{ character.prospectingSkillPoints }}</td>
+                <td>{{ character.prospectingBonus }}</td>
+                <td>{{ character.prospectingEquipments }}</td>
+                <td>{{ character.prospectingGuild }}</td>
+                <td>{{ character.prospectingTotal }}</td>
+                <td>{{ character.arenaDefeate }}</td>
+                <td>{{ character.arenaVictory }}</td>
+                <td>{{ character.experience }}</td>
+                <td>{{ character.experienceTotal }}</td>
+                <td>{{ character.skillPoints }}</td>
+                <td>{{ character.gold }}</td>
+                <td>{{ character.chapter }}</td>
+                <td>{{ character.onBattle }}</td>
+                <td>{{ character.enable }}</td>
+                <td>
+                    <a href="{{ path('app_character_show', {'id': character.id}) }}">show</a>
+                    <a href="{{ path('app_character_edit', {'id': character.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="71">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_character_new') }}">Create new</a>
+{% endblock %}
