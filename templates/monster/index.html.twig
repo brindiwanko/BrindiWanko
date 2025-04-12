@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Monster index{% endblock %}
+
+{% block body %}
+    <h1>Monster index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Picture</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Level</th>
+                <th>Hp</th>
+                <th>Mp</th>
+                <th>Strength</th>
+                <th>Magic</th>
+                <th>Agility</th>
+                <th>Defense</th>
+                <th>DefenseMagic</th>
+                <th>Eperience</th>
+                <th>Gold</th>
+                <th>Limited</th>
+                <th>Quantity</th>
+                <th>QuantityBattle</th>
+                <th>QuantityEscaped</th>
+                <th>QuantityVictory</th>
+                <th>QuantityDefeated</th>
+                <th>QuantityDraw</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for monster in monsters %}
+            <tr>
+                <td>{{ monster.id }}</td>
+                <td>{{ monster.picture }}</td>
+                <td>{{ monster.name }}</td>
+                <td>{{ monster.description }}</td>
+                <td>{{ monster.level }}</td>
+                <td>{{ monster.hp }}</td>
+                <td>{{ monster.mp }}</td>
+                <td>{{ monster.strength }}</td>
+                <td>{{ monster.magic }}</td>
+                <td>{{ monster.agility }}</td>
+                <td>{{ monster.defense }}</td>
+                <td>{{ monster.defenseMagic }}</td>
+                <td>{{ monster.eperience }}</td>
+                <td>{{ monster.gold }}</td>
+                <td>{{ monster.limited }}</td>
+                <td>{{ monster.quantity }}</td>
+                <td>{{ monster.quantityBattle }}</td>
+                <td>{{ monster.quantityEscaped }}</td>
+                <td>{{ monster.quantityVictory }}</td>
+                <td>{{ monster.quantityDefeated }}</td>
+                <td>{{ monster.quantityDraw }}</td>
+                <td>
+                    <a href="{{ path('app_monster_show', {'id': monster.id}) }}">show</a>
+                    <a href="{{ path('app_monster_edit', {'id': monster.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="22">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_monster_new') }}">Create new</a>
+{% endblock %}

@@ -1,60 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}About{% endblock %}
+{% block title %}Job index{% endblock %}
 
 {% block body %}
-
-    <h1>Character Jobs</h1>
-
-    <table class="table">
-        <tr>
-            <td>Name</td>
-            <td>Knight</td>
-        </tr>
-        <tr>
-            <td>Description</td>
-            <td>A character class focused on strength and physical endurance.</td>
-        </tr>
-        <tr>
-            <td>Level-up Bonuses</td>
-            <td>
-                +10 HP<br>
-                +1 MP<br>
-                +2 Strength<br>
-                +1 Magic<br>
-                +1 Agility<br>
-                +1 Defense<br>
-                +1 Magic Defense<br>
-                +0 Wisdom<br>
-                +0 Prospecting
-            </td>
-        </tr>
-    </table>
-
-    <p><img src="/img/empty.png" alt="Knight image" height="100" width="100"></p>
+    <h1>Job index</h1>
 
     <table class="table">
-        <tr>
-            <td>Name</td>
-            <td>Mage</td>
-        </tr>
-        <tr>
-            <td>Description</td>
-            <td>A character class focused on magical power and intelligence.</td>
-        </tr>
-        <tr>
-            <td>Level-up Bonuses</td>
-            <td>
-                +10 HP<br>
-                +1 MP<br>
-                +1 Strength<br>
-                +2 Magic<br>
-                +1 Agility<br>
-                +1 Defense<br>
-                +1 Magic Defense<br>
-                +0 Wisdom<br>
-                +0 Prospecting
-            </td>
-        </tr>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Picture</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>HpBonus</th>
+                <th>MpBonus</th>
+                <th>StrengthBonus</th>
+                <th>MagicBonus</th>
+                <th>AgilityBonus</th>
+                <th>DefenseBonus</th>
+                <th>DefenseMagicBonus</th>
+                <th>WisdomBonus</th>
+                <th>ProspectingBonus</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for job in jobs %}
+            <tr>
+                <td>{{ job.id }}</td>
+                <td>{{ job.picture }}</td>
+                <td>{{ job.name }}</td>
+                <td>{{ job.description }}</td>
+                <td>{{ job.hpBonus }}</td>
+                <td>{{ job.mpBonus }}</td>
+                <td>{{ job.strengthBonus }}</td>
+                <td>{{ job.magicBonus }}</td>
+                <td>{{ job.agilityBonus }}</td>
+                <td>{{ job.defenseBonus }}</td>
+                <td>{{ job.defenseMagicBonus }}</td>
+                <td>{{ job.wisdomBonus }}</td>
+                <td>{{ job.prospectingBonus }}</td>
+                <td>
+                    <a href="{{ path('app_job_show', {'id': job.id}) }}">show</a>
+                    <a href="{{ path('app_job_edit', {'id': job.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
     </table>
+
+    <a href="{{ path('app_job_new') }}">Create new</a>
 {% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Configuration{% endblock %}
+
+{% block body %}
+    <h1>Configuration</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ configuration.id }}</td>
+            </tr>
+            <tr>
+                <th>GameName</th>
+                <td>{{ configuration.gameName }}</td>
+            </tr>
+            <tr>
+                <th>Presentation</th>
+                <td>{{ configuration.presentation }}</td>
+            </tr>
+            <tr>
+                <th>MaxLevel</th>
+                <td>{{ configuration.maxLevel }}</td>
+            </tr>
+            <tr>
+                <th>Experience</th>
+                <td>{{ configuration.experience }}</td>
+            </tr>
+            <tr>
+                <th>SkillPoint</th>
+                <td>{{ configuration.skillPoint }}</td>
+            </tr>
+            <tr>
+                <th>ExperienceBonus</th>
+                <td>{{ configuration.experienceBonus }}</td>
+            </tr>
+            <tr>
+                <th>GoldBonus</th>
+                <td>{{ configuration.goldBonus }}</td>
+            </tr>
+            <tr>
+                <th>DropBonus</th>
+                <td>{{ configuration.dropBonus }}</td>
+            </tr>
+            <tr>
+                <th>Access</th>
+                <td>{{ configuration.access }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_configuration_index') }}">back to list</a>
+
+    <a href="{{ path('app_configuration_edit', {'id': configuration.id}) }}">edit</a>
+
+    {{ include('configuration/_delete_form.html.twig') }}
+{% endblock %}

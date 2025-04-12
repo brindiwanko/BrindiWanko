@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Item index{% endblock %}
+
+{% block body %}
+    <h1>Item index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Picture</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Level</th>
+                <th>LevelRequired</th>
+                <th>HpEffect</th>
+                <th>MpEffect</th>
+                <th>StrengthEffect</th>
+                <th>MagicEffect</th>
+                <th>AgilityEffect</th>
+                <th>DefenseEffect</th>
+                <th>DefenseMagicEffect</th>
+                <th>WisdomEffect</th>
+                <th>ProspectingEffect</th>
+                <th>PurchasePrice</th>
+                <th>SalePrice</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.picture }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.level }}</td>
+                <td>{{ item.levelRequired }}</td>
+                <td>{{ item.hpEffect }}</td>
+                <td>{{ item.mpEffect }}</td>
+                <td>{{ item.strengthEffect }}</td>
+                <td>{{ item.magicEffect }}</td>
+                <td>{{ item.agilityEffect }}</td>
+                <td>{{ item.defenseEffect }}</td>
+                <td>{{ item.defenseMagicEffect }}</td>
+                <td>{{ item.wisdomEffect }}</td>
+                <td>{{ item.prospectingEffect }}</td>
+                <td>{{ item.purchasePrice }}</td>
+                <td>{{ item.salePrice }}</td>
+                <td>
+                    <a href="{{ path('app_item_show', {'id': item.id}) }}">show</a>
+                    <a href="{{ path('app_item_edit', {'id': item.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="18">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_item_new') }}">Create new</a>
+{% endblock %}
