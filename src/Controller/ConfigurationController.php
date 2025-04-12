@@ -15,7 +15,6 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/configuration')]
 final class ConfigurationController extends AbstractController{
     #[Route(name: 'app_configuration_index', methods: ['GET'])]
-    #[IsGranted('ROLE_USER')]
     public function index(ConfigurationRepository $configurationRepository): Response
     {
         return $this->render('configuration/index.html.twig', [
@@ -45,7 +44,6 @@ final class ConfigurationController extends AbstractController{
     }
 
     #[Route('/{id}', name: 'app_configuration_show', methods: ['GET'])]
-    #[IsGranted('ROLE_USER')]
     public function show(Configuration $configuration): Response
     {
         return $this->render('configuration/show.html.twig', [
