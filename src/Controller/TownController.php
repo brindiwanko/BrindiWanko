@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/town')]
 final class TownController extends AbstractController{
     #[Route(name: 'app_town_index', methods: ['GET'])]
-    #[IsGranted('ROLE_USER')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(TownRepository $townRepository): Response
     {
         return $this->render('town/index.html.twig', [

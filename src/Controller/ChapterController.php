@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/chapter')]
 final class ChapterController extends AbstractController{
     #[Route(name: 'app_chapter_index', methods: ['GET'])]
-    #[IsGranted('ROLE_USER')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(ChapterRepository $chapterRepository): Response
     {
         return $this->render('chapter/index.html.twig', [

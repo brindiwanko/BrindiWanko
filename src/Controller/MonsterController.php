@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/monster')]
 final class MonsterController extends AbstractController{
     #[Route(name: 'app_monster_index', methods: ['GET'])]
-    #[IsGranted('ROLE_USER')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(MonsterRepository $monsterRepository): Response
     {
         return $this->render('monster/index.html.twig', [

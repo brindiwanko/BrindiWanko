@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/item')]
 final class ItemController extends AbstractController{
     #[Route(name: 'app_item_index', methods: ['GET'])]
-    #[IsGranted('ROLE_USER')]
+    #[IsGranted('ROLE_ADMIN')]
     public function index(ItemRepository $itemRepository): Response
     {
         return $this->render('item/index.html.twig', [
