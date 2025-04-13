@@ -1,0 +1,17 @@
+{# templates/bundles/TwigBundle/Exception/error5xx.html.twig #}
+{% extends 'error_pages/base.html.twig' %}
+
+{% block title %}Server Error{% endblock %}
+
+{% block body %}
+    <div class="error-page">
+        <h1>💥 {{ status_code }} - Server Error</h1>
+        <p>Oops! Something broke on our end. We're working on it.</p>
+
+        {% if app.debug %}
+            <p><strong>Debug mode:</strong> {{ exception.message }}</p>
+        {% endif %}
+
+        <a href="{{ path('app_home') }}">← Back to homepage</a>
+    </div>
+{% endblock %}

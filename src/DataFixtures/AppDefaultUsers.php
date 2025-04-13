@@ -44,8 +44,8 @@ class AppDefaultUsers extends Fixture
                 plainPassword: 'password'
             );
 
-            $user->setName($this->faker->name)
-                ->setEmail($this->faker->email)
+            $user->setName($this->faker->name())
+                ->setEmail($this->faker->email())
                 ->setPassword($password)
                 ->setRoles(['ROLE_USER'])
             ;

@@ -32,13 +32,11 @@ class DoctrineFixtureLoadListener
         if (!$this->isFixtureCommand($event)) {
             return;
         }
-        if (!$this->isMySQL()) {
-            return;
+
+        if ($this->isMySQL()) {
+            $io = $this->makeSymfonyStyle($event);
+            $this->disableForeignKeyCheck($io);
         }
-
-        $io = $this->makeSymfonyStyle($event);
-
-        $this->disableForeignKeyCheck($io);
     }
 
     #[AsEventListener(
@@ -50,13 +48,11 @@ class DoctrineFixtureLoadListener
         if (!$this->isFixtureCommand($event)) {
             return;
         }
-        if (!$this->isMySQL()) {
-            return;
+
+        if ($this->isMySQL()) {
+            $io = $this->makeSymfonyStyle($event);
+            $this->enableForeignKeyCheck($io);
         }
-
-        $io = $this->makeSymfonyStyle($event);
-
-        $this->enableForeignKeyCheck($io);
     }
 
     #[AsEventListener(
@@ -68,13 +64,11 @@ class DoctrineFixtureLoadListener
         if (!$this->isFixtureCommand($event)) {
             return;
         }
-        if (!$this->isMySQL()) {
-            return;
+
+        if ($this->isMySQL()) {
+            $io = $this->makeSymfonyStyle($event);
+            $this->enableForeignKeyCheck($io);
         }
-
-        $io = $this->makeSymfonyStyle($event);
-
-        $this->enableForeignKeyCheck($io);
     }
 
     protected function disableForeignKeyCheck(SymfonyStyle $io): void

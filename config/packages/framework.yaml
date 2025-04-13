@@ -13,3 +13,9 @@ when@test:
         test: true
         session:
             storage_factory_id: session.storage.factory.mock_file
+
+    error_controller: App\Controller\ErrorPagesController::show
+
+when@prod:
+    framework:
+        error_controller: App\Controller\ErrorPagesController::show

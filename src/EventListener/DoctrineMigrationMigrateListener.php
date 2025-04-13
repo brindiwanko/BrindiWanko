@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\EventListener;
 
-use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Event\ConsoleCommandEvent;
 use Symfony\Component\Console\Event\ConsoleErrorEvent;
@@ -18,9 +17,9 @@ use Symfony\Component\Lock\LockInterface;
 class DoctrineMigrationMigrateListener
 {
     private ?LockInterface $migrationLock = null;
+    private ?LockInterface $maintenanceLock = null;
 
     public function __construct(
-        private CacheItemPoolInterface $cache,
         private LockFactory $lockFactory,
     ) {
     }
@@ -82,7 +81,10 @@ class DoctrineMigrationMigrateListener
 
         return null !== $command
             && method_exists($command, 'getName')
-            && 'doctrine:migrations:migrate' == $command->getName();
+            && (
+                'doctrine:migrations:migrate' == $command->getName()
+                || 'doctrine:fixtures:load' == $command->getName()
+            );
     }
 
     protected function isMigrating(SymfonyStyle $io): bool
@@ -90,12 +92,12 @@ class DoctrineMigrationMigrateListener
         try {
             $this->migrationLock = $this->lockFactory->createLock('app.lock_migration', 60);
             if (!$this->migrationLock->acquire()) {
-                $io->success('Another instance locked the migration process.');
+                $io->success('Another instance locked the doctrine command process.');
 
                 return true;
             }
         } catch (LockAcquiringException $e) {
-            $io->error('Failed to acquire migration lock: ' . $e->getMessage());
+            $io->error('Failed to acquire doctrine command lock: ' . $e->getMessage());
 
             return true;
         }
@@ -107,36 +109,46 @@ class DoctrineMigrationMigrateListener
     {
         $io->note('Enabling maintenance mode...');
 
-        $cacheItem = $this->cache->getItem('app.maintenance_mode');
-        $cacheItem->set('1');
-        $cacheItem->expiresAfter(60);
-        $this->cache->save($cacheItem);
+        try {
+            $this->maintenanceLock = $this->lockFactory->createLock('app.maintenance_mode', 60);
+            if (!$this->maintenanceLock->acquire()) {
+                $io->warning('Failed to enable maintenance mode. Another process is already holding the lock.');
+                return;
+            }
 
-        $io->success('Maintenance enabled.');
+            $io->success('Maintenance mode enabled.');
+        } catch (LockAcquiringException $e) {
+            $io->error('Failed to acquire maintenance lock: ' . $e->getMessage());
+        }
     }
 
     protected function startMigration(SymfonyStyle $io): void
     {
-        $cacheItem = $this->cache->getItem('app.lock_migration');
-        $cacheItem->set('1');
-        $cacheItem->expiresAfter(60);
-        $this->cache->save($cacheItem);
+        $this->migrationLock->acquire();
 
-        $io->success('Lock migration obtained.');
+        $io->success('Lock doctrine command obtained.');
     }
 
-    protected function releaseMaintenanceLockAfterMigration(SymfonyStyle $io)
+    protected function releaseMaintenanceLockAfterMigration(SymfonyStyle $io): void
     {
         $io->note('Disabling maintenance mode...');
-        $this->cache->deleteItem('app.maintenance_mode');
-        $io->success('Maintenance mode disabled.');
+
+        try {
+            $maintenanceLock = $this->lockFactory->createLock('app.maintenance_mode');
+            if ($maintenanceLock->isAcquired()) {
+                $maintenanceLock->release();
+                $io->success('Maintenance mode disabled.');
+            }
+        } catch (\Exception $e) {
+            $io->error('Failed to release maintenance lock: ' . $e->getMessage());
+        }
     }
 
     protected function releaseMigrationLockAfterMigration(SymfonyStyle $io)
     {
         if ($this->migrationLock && $this->migrationLock->isAcquired()) {
             $this->migrationLock->release();
-            $io->success('Lock migration released.');
+            $io->success('Lock doctrine command released.');
         }
     }
 

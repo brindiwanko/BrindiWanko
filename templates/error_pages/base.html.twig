@@ -1,0 +1,56 @@
+{%- set pageTitle =
+    (block('title') is not defined or block('title') is empty ? '' : block('title') ~ ' | ')
+    ~ app_parameter('app.name')
+-%}
+<!DOCTYPE html>
+<html class="h-100" data-bs-theme="light" lang="{{ app_parameter('app.default_locale') }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, minimum-scale=1.0, maximum-scale=5.0, user-scalable=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.ico">
+
+    <title>{{ pageTitle }}</title>
+
+    {% block stylesheets %}
+    {% endblock %}
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+
+    <!-- Bootstrap core CSS -->
+    <!-- <link href="/css/bootstrap.min.css" rel="stylesheet"> -->
+
+    <!-- Custom styles for this template -->
+    <link href="/css/navbar-top-fixed.css" rel="stylesheet">
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body class="d-flex flex-column h-100">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('app_home') }}">{{ app_parameter('app.name') }}</a>
+    </div>
+</nav>
+{%- include './_partials/dropdown-theme.html.twig' -%}
+{%- include './_partials/flash-messages.html.twig' -%}
+<main class="container">
+    <div class="bg-light text-dark p-5 rounded">
+        <div class="px-1 py-1 rounded">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+</main>
+<footer class="footer mt-auto py-3 bg-body-tertiary">
+    <div class="container-fluid">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <span>{{ app_parameter('app.name') ~ ': ' ~ app_parameter('app.version') }}</span>
+        </div>
+    </div>
+</footer>
+{% block javascripts_endbody %}
+{% endblock %}
+</body>
+</html>

@@ -1,6 +1,7 @@
 {%- set pageTitle =
-	app_parameter('app.name')
-	~ (block('title') is not defined or block('title') is empty ? '' : ' | ' ~ block('title')) -%}
+	(block('title') is not defined or block('title') is empty ? '' : block('title') ~ ' | ')
+	~ app_parameter('app.name')
+-%}
 <!DOCTYPE html>
 <html class="h-100" data-bs-theme="light" lang="{{ app_parameter('app.default_locale') }}">
 	<head>
