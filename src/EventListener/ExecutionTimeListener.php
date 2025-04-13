@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\EventListener;
 
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
-use Symfony\Component\HttpKernel\Event\ControllerEvent;
+use Symfony\Component\HttpKernel\Event\ControllerArgumentsEvent;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
@@ -24,10 +24,10 @@ final class ExecutionTimeListener
 
     // Symfony\Bridge\Twig\EventListener\TemplateAttributeListener::onKernelView() has a priority of -128
     #[AsEventListener(
-        event: KernelEvents::CONTROLLER,
-        priority: 1,
+        event: KernelEvents::CONTROLLER_ARGUMENTS,
+        priority: 0,
     )]
-    public function onEndTimer(ControllerEvent $event): void
+    public function onEndTimer(ControllerArgumentsEvent $event): void
     {
         if (!$event->isMainRequest()) {
             return;
