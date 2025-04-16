@@ -49,7 +49,7 @@
 						</li>
 					</ul>
 					<ul class="navbar-nav pull-right">
-						<li class="nav-item dropdown d-flex flex-row justify-content-end align-items-center column-gap-2">
+						<li class="nav-item dropdown">
 							{# if is_granted('IS_AUTHENTICATED') works too #}
 							{% if app.user %}
 								{{ 'Welcome,'|trans }} {{ app.user.name }}!
