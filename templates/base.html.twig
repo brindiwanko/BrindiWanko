@@ -50,10 +50,6 @@
 					</ul>
 					<ul class="navbar-nav pull-right">
 						<li class="nav-item dropdown">
-							{# if is_granted('IS_AUTHENTICATED') works too #}
-							{% if app.user %}
-								{{ 'Welcome,'|trans }} {{ app.user.name }}!
-							{% endif %}
 							<a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-bs-toggle="dropdown" aria-expanded="false">
 								{{ 'Menu'|trans }}
 							</a>
