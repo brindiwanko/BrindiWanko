@@ -58,7 +58,7 @@ class RegisterFormType extends AbstractType
                 ],
             ])
             ->addEventListener(FormEvents::POST_SUBMIT, [$this, 'hashPassword'])
-            ->addEventListener(FormEvents::POST_SUBMIT, [$this, 'asssignAsAdminIfDatabaseHasNoAdmins'])
+            ->addEventListener(FormEvents::POST_SUBMIT, [$this, 'assignAsAdminIfDatabaseHasNoAdmins'])
         ;
     }
 
@@ -82,7 +82,7 @@ class RegisterFormType extends AbstractType
         $user->setPassword($hashedPassword);
     }
 
-    public function asssignAsAdminIfDatabaseHasNoAdmins(PostSubmitEvent $event): void
+    public function assignAsAdminIfDatabaseHasNoAdmins(PostSubmitEvent $event): void
     {
         if ($this->userRepository->count(['roles' => 'ROLE_ADMIN']) > 0) {
             return;
