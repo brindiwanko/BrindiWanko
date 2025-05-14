@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Entity\User;
-use App\Repository\UserRepository;
+use App\EventListener\AssignAsAdminIfDatabaseHasNoAdminsRegisterListener;
+use App\EventListener\HashNewPasswordListener;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Event\PostSubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -13,7 +14,6 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -21,11 +21,11 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 class RegisterFormType extends AbstractType
 {
     public function __construct(
-        private UserPasswordHasherInterface $userPasswordHasher,
-        private UserRepository $userRepository,
-    ) {
+        private readonly HashNewPasswordListener                            $hashNewPasswordListener,
+        private readonly AssignAsAdminIfDatabaseHasNoAdminsRegisterListener $assignAsAdminIfDatabaseHasNoAdminsRegisterListener,
+    )
+    {
     }
-
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -39,7 +39,7 @@ class RegisterFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('plainPassword', PasswordType::class, [
+            ->add('newPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'label'       => 'Password',
@@ -57,8 +57,8 @@ class RegisterFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->addEventListener(FormEvents::POST_SUBMIT, [$this, 'hashPassword'])
-            ->addEventListener(FormEvents::POST_SUBMIT, [$this, 'assignAsAdminIfDatabaseHasNoAdmins'])
+            ->addEventListener(FormEvents::POST_SUBMIT, $this->hashNewPasswordListener)
+            ->addEventListener(FormEvents::POST_SUBMIT, $this->assignAsAdminIfDatabaseHasNoAdminsRegisterListener)
         ;
     }
 
@@ -67,29 +67,5 @@ class RegisterFormType extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class,
         ]);
-    }
-
-    public function hashPassword(PostSubmitEvent $event): void
-    {
-        /* @var User $user */
-        $user = $event->getData();
-
-        /** @var string $plainPassword */
-        $plainPassword  = $event->getForm()->get('plainPassword')->getData();
-        $hashedPassword = $this->userPasswordHasher->hashPassword($user, $plainPassword);
-
-        // encode the plain password
-        $user->setPassword($hashedPassword);
-    }
-
-    public function assignAsAdminIfDatabaseHasNoAdmins(PostSubmitEvent $event): void
-    {
-        if ($this->userRepository->count(['roles' => 'ROLE_ADMIN']) > 0) {
-            return;
-        }
-
-        /* @var User $user */
-        $user = $event->getData();
-        $user->setRoles(['ROLE_ADMIN']);
     }
 }

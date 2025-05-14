@@ -6,6 +6,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -33,6 +34,38 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newHashedPassword);
         $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
+    }
+
+    /**
+     * Find all users with the ROLE_ADMIN role
+     *
+     * @return User[]
+     */
+    public function findAdmins(
+        $limit = null,
+    ): mixed
+    {
+        $platform = $this->getEntityManager()->getConnection()->getDatabasePlatform();
+
+        $query = $this->createQueryBuilder('u');
+
+        if ($platform instanceof MySqlPlatform) {
+            // Use JSON_CONTAINS for MySQL
+            $query->where('JSON_CONTAINS(u.roles, :role) = 1')
+                ->setParameter('role', json_encode('ROLE_ADMIN'));
+        } else {
+            // Fallback using LIKE for other platforms (e.g., SQLite, PostgreSQL if not using native JSON queries)
+            $query->where('u.roles LIKE :role')
+                ->setParameter('role', '%ROLE_ADMIN%');
+        }
+
+        if ($limit) {
+            $query->setMaxResults($limit);
+        }
+
+        return $query
+            ->getQuery()
+            ->getResult();
     }
 
     //    /**
