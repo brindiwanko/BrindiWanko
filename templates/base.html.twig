@@ -28,7 +28,7 @@
 		<script src="/js/bootstrap.bundle.min.js"></script>
 	</head>
 
-	<body class="d-flex flex-column h-100">
+	<body class="d-flex flex-column h-100 bg-body-secondary">
 		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="{{ path('app_home') }}">{{ app_parameter('app.name') }}</a>
@@ -73,7 +73,7 @@
 		{%- include './_partials/dropdown-theme.html.twig' -%}
 		{%- include './_partials/flash-messages.html.twig' -%}
 		<main class="container">
-		  <div class="bg-light text-dark p-5 rounded">
+		  <div class="bg-body-tertiary p-5 rounded">
 				<div class="px-1 py-1 rounded">
 					{% block body %}{% endblock %}
 				</div>

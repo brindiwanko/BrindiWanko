@@ -1,4 +1,6 @@
 .form-register {
     max-width: 420px;
     padding: 1rem;
+    margin-left: auto;
+    margin-right: auto;
 }
